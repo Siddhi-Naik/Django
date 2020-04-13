@@ -1,0 +1,48 @@
+{% extends 'reg_app/base.html' %}
+
+{% block head_block %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+{% endblock%}
+
+{% block body_block %}
+
+<div class="jumbotron">
+    <h1>Welcome</h1>
+   
+    {% if registered %}
+      <h1>Thankyou,You have been registered!</h1>
+    {% else %}
+      <form method='POST' enctypr="multipart/form-data">
+           <h2>Please enter your details here</h2>
+           {% csrf_token %}
+          {{user_form.as_p}}
+          {{profile_form.as_p}}
+          <input type='submit' class='btn btn-primary' value='Register'>
+          <img src="" alt="">
+      </form>
+      {%  endif %}
+    </div>
+    <script>
+        var my_input = document.getElementsByTagName('input')[5]
+        
+        my_input.addEventListener("change",function previewFile() {
+        var preview = document.querySelector('img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+        })
+    </script>
+
+    
+{% endblock %}

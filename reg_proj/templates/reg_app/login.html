@@ -1,0 +1,16 @@
+{% extends 'reg_app/base.html' %}
+
+   {%block body_block%}
+   <div class="container">
+   <div class="jumbotron">
+<form action="{% url 'reg_app:login' %}" method='POST'>
+    <label for="username">Username:</label>
+    <input type="text" name="username" placeholder="Enter your username">
+    <label for="password" name='password'>Password:</label>
+    <input type="text" name="password">
+    <input type="submit" value='Login'>
+    {% csrf_token %}
+</form>
+</div>
+</div>
+   {% endblock %}
